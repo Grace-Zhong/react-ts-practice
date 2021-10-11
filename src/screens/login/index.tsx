@@ -1,5 +1,6 @@
 import React, { FormEvent } from "react";
 import { cleanObject } from "../../utils/index";
+import {useAuth} from "../../context/auth-context";
 
 // interface Base {
 //   id: number
@@ -18,18 +19,19 @@ import { cleanObject } from "../../utils/index";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export const LoginScreen = () => {
-  const login = (param: { username: string; password: string }) => {
-    fetch(`${apiUrl}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(param),
-    }).then(async (response) => {
-      if (response.ok) {
-      }
-    });
-  };
+  const {login, user} = useAuth();
+  // const login = (param: { username: string; password: string }) => {
+  //   fetch(`${apiUrl}/login`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(param),
+  //   }).then(async (response) => {
+  //     if (response.ok) {
+  //     }
+  //   });
+  // };
 
   // HTMLFormElement extends Element
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -43,6 +45,8 @@ export const LoginScreen = () => {
 
   return (
       <form onSubmit={handleSubmit}>
+        {user ? <div>登录成功, 用户名: {user?.name}</div> : null}
+
         <div>
           <label htmlFor="username">用户名</label>
           <input type="text" id={"username"} />
