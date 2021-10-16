@@ -10,8 +10,8 @@ function App() {
     <div className="App">
       {/*<ProjectListScreen />*/}
       {/*<TsReactTest />*/}
-      {/*<LoginScreen />*/}
-      <ReduxPrac />
+      <LoginScreen />
+      {/*<ReduxPrac />*/}
     </div>
   );
 }
